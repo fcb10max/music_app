@@ -127,7 +127,7 @@ export const Main = styled.div`
   }
   .mainWindow > .wrapper > .block {
     display: flex;
-    height: 400px;
+    height: 500px;
     margin: 40px 0;
     
     .history {
@@ -135,7 +135,6 @@ export const Main = styled.div`
       margin-right: 20px;
       border-radius: 40px;
       background-color: #fff;
-      
       .top {
         width: 100%;
         display: flex;

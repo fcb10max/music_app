@@ -3,6 +3,8 @@ import logo from "./png/musicAppLogo.png";
 import playMarket from "./png/GooglePlay.png";
 import appStore from "./png/AppStore.png";
 import albumCover from "./png/albumCover.png";
+import albumCover1 from "./png/albumCover1.png";
+import defaultCover from "./png/default_background.jpg";
 
 // import svgs
 
@@ -21,13 +23,16 @@ import playedIcon from "./svg/PlayedIcon.svg";
 import profile from "./svg/Profile.svg";
 import search from "./svg/Search.svg";
 import setting from "./svg/Setting.svg";
+import pause from "./svg/Pause.svg";
 
 const images = {
   pngs: {
     logo,
     playMarket,
     appStore,
-    albumCover
+    albumCover,
+    albumCover1,
+    defaultCover
   },
   svgs: {
     arrowRight,
@@ -45,6 +50,7 @@ const images = {
     profile,
     search,
     setting,
+    pause
   },
 };
 

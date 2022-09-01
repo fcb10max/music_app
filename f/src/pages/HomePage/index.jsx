@@ -1,40 +1,25 @@
-import React, { useEffect, useRef } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { Main } from "./styles";
 import images from "../../assets";
 import Navlinks from "./components/Navlinks";
-
 import { Scrollbars } from "react-custom-scrollbars";
 import HistoryItem from "./components/HistoryItem";
 import ChartItem from "./components/ChartItem";
 import Audio from "./components/Audio";
-
-// import audio file
-// const path = "../../assets/audios/timati-nelzya(ft.nazima).mp3";
-// const audio = new Audio(path);
-// audio.innerText =
-//   "Your browser does not support audio player. Please update your browser to latest version";
-const audio = require("../../assets/audios/timati-nelzya(ft.nazima).mp3");
+import useDataFetch from "./hooks/useDataFetch";
 
 const HomePage = () => {
+  const serverURL = process.env.REACT_APP_SERVER_URL;
   const ref = useRef();
   const itemsWrapper = useRef();
+  const audios = useDataFetch(`${serverURL}/?limit=20`);
+  const initialAudio = useDataFetch(`${serverURL}/audio?isRandom=1`);
+  const [currentAudio, setCurrentAudio] = useState();
+  const [isCurrentAudioEnded, setIsCurrentAudioEnded] = useState(false);
+  const [currentAudioIndex, setCurrentAudioIndex] = useState(0);
+  const [isSwitchedBack, setIsSwitchedBack] = useState(false);
 
-  useEffect(() => {
-    if (!ref || !ref.current || !itemsWrapper || !itemsWrapper.current) return;
-    const arrowsParentEl = ref.current;
-    const arrowsElChildren = Array.from(arrowsParentEl.children);
-    const itemsWrapperEl = itemsWrapper.current;
-    arrowsElChildren.forEach((el) =>
-      el.addEventListener("click", (e) => arrowClickHandler(e.target))
-    );
-    itemsWrapperEl.addEventListener("scroll", (e) => {
-      const left = itemsWrapperEl.scrollLeft;
-      const right = left + itemsWrapperEl.offsetWidth;
-      toggleArrowsClasses(left, right, itemsWrapperEl.scrollWidth);
-    });
-  }, []);
-
-  const arrowClickHandler = (el) => {
+  const arrowClickHandler = useCallback((el) => {
     if (!ref || !itemsWrapper || !ref.current || !itemsWrapper.current) return;
     const parentEl = itemsWrapper.current;
     const isForward = el.innerText === ">" ? true : false;
@@ -60,7 +45,22 @@ const HomePage = () => {
     const newRight = newLeft + parentOffsetWidth;
 
     toggleArrowsClasses(newLeft, newRight, parentScrollWidth);
-  };
+  }, []);
+
+  useEffect(() => {
+    if (!ref || !ref.current || !itemsWrapper || !itemsWrapper.current) return;
+    const arrowsParentEl = ref.current;
+    const arrowsElChildren = Array.from(arrowsParentEl.children);
+    const itemsWrapperEl = itemsWrapper.current;
+    arrowsElChildren.forEach((el) =>
+      el.addEventListener("click", (e) => arrowClickHandler(e.target))
+    );
+    itemsWrapperEl.addEventListener("scroll", (e) => {
+      const left = itemsWrapperEl.scrollLeft;
+      const right = left + itemsWrapperEl.offsetWidth;
+      toggleArrowsClasses(left, right, itemsWrapperEl.scrollWidth);
+    });
+  }, [arrowClickHandler]);
 
   const toggleArrowsClasses = (left, right, maxWidth) => {
     if (!ref || !ref.current) return;
@@ -85,9 +85,9 @@ const HomePage = () => {
     }
   };
 
-  const scrollHorizontally = (event) => {
+  const scrollHorizontally = (e) => {
     if (!itemsWrapper || !itemsWrapper.current) return;
-    // e.preventDefault();
+    e.preventDefault();
     // const delta = Math.max(-1, Math.min(1, e.wheelDelta || -e.detail));
     // itemsWrapper.current.scrollLeft -= delta * 40;
 
@@ -104,6 +104,32 @@ const HomePage = () => {
     //   target.scrollLeft += event.deltaY;
     // }
   };
+
+  useEffect(() => {
+    if (!isCurrentAudioEnded || !audios || !audios.data) return;
+    if (!currentAudio || currentAudioIndex === audios.data.length) {
+      setCurrentAudio(audios.data[0]);
+      setCurrentAudioIndex(0);
+      setIsCurrentAudioEnded(false);
+      return;
+    }
+    setCurrentAudio(audios.data[currentAudioIndex + 1]);
+    setCurrentAudioIndex((prev) => prev + 1);
+    setIsCurrentAudioEnded(false);
+  }, [isCurrentAudioEnded]);
+
+  useEffect(() => {
+    if (!isSwitchedBack || !audios || !audios.data) return;
+    if (!currentAudio || currentAudioIndex === 0) {
+      setCurrentAudio(audios.data[audios.data.length-1]);
+      setCurrentAudioIndex(audios.data.length-1);
+      setIsSwitchedBack(false);
+      return;
+    }
+    setCurrentAudio(audios.data[currentAudioIndex - 1]);
+    setCurrentAudioIndex((prev) => prev - 1);
+    setIsSwitchedBack(false);
+  }, [isSwitchedBack]);
 
   return (
     <Scrollbars style={{ width: "100vw", height: "100vh" }}>
@@ -148,11 +174,17 @@ const HomePage = () => {
                   // onScroll={scrollHorizontally}
                   // onWheel={scrollHorizontally}
                 >
-                  {["", "", "", "", "", "", "", "", "", "", ""].map(
-                    (i, ind) => (
-                      <ChartItem key={ind} images={images} />
-                    )
-                  )}
+                  {!audios.loading &&
+                    !audios.error &&
+                    audios.data &&
+                    audios.data.map((i, ind) => (
+                      <ChartItem
+                        key={ind}
+                        images={images}
+                        data={i}
+                        setCurrentAudio={setCurrentAudio}
+                      />
+                    ))}
                 </div>
               </div>
               <div className="block">
@@ -166,7 +198,7 @@ const HomePage = () => {
                     <Scrollbars
                       style={{
                         flex: 2,
-                        height: 320,
+                        height: 430,
                         borderBottomRightRadius: 40,
                         borderBottomLeftRadius: 40,
                       }}
@@ -184,17 +216,27 @@ const HomePage = () => {
                       )}
                     >
                       <div className="main">
-                        {["", "", "", "", "", "", "", "", "", ""].map(
-                          (el, ind) => (
-                            <HistoryItem key={ind} images={images} />
-                          )
-                        )}
+                        {!audios.loading &&
+                          !audios.error &&
+                          audios.data &&
+                          audios.data.map((i, ind) => (
+                            <HistoryItem key={ind} images={images} data={i} />
+                          ))}
                       </div>
                     </Scrollbars>
                   </div>
                 </div>
                 <div className="player">
-                  <Audio audioUrl={audio} images={images} />
+                  {!initialAudio.loading &&
+                    !initialAudio.error &&
+                    initialAudio.data && (
+                      <Audio
+                        data={currentAudio ? currentAudio : initialAudio.data}
+                        images={images}
+                        setIsCurrentAudioEnded={setIsCurrentAudioEnded}
+                        setIsSwitchedBack={setIsSwitchedBack}
+                      />
+                    )}
                 </div>
               </div>
             </div>

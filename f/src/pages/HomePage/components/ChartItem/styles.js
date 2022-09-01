@@ -15,6 +15,7 @@ export const Main = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 
   .img {
     position: relative;
@@ -43,6 +44,7 @@ export const Main = styled.div`
     width: 128px;
     height: 128px;
     object-fit: cover;
+    border-radius: 20px;
   }
   p.genre {
     font-size: 16px;
@@ -51,6 +53,10 @@ export const Main = styled.div`
     padding: 10px 0 0;
     margin: 0;
     align-self: start;
+    width: 90%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
   p.chartName {
     font-size: 14px;
@@ -58,5 +64,10 @@ export const Main = styled.div`
     color: #7c8db5bf;
     margin: 0;
     align-self: start;
+    width: 90%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
   }
 `;

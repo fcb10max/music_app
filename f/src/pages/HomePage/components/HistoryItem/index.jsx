@@ -1,17 +1,26 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Main } from "./styles";
+import { Buffer } from "buffer";
 
-const HistoryItem = ({images}) => {
+
+const HistoryItem = ({data, images}) => {
+  const [coverImage, setCoverImage] = useState("");
+  useEffect(() => {
+    if (data && !data.image?.length) return;
+    const image = new Buffer.from(data.image).toString("base64");
+    setCoverImage("data:image/png;base64," + image);
+  }, [data])
+
   return (
     <Main>
       <div className="wrapper">
         <div className="left">
           <div className="image">
-            <img src={images.pngs.albumCover} alt="image" />
+            <img src={coverImage ? coverImage : images.pngs.defaultCover} alt="cover" />
           </div>
           <div className="name">
-            <h2 className="songName">She Will Be Loved</h2>
-            <h3 className="singer">Maroon 5</h3>
+            <h2 className="songName">{data.songName}</h2>
+            <h3 className="singer">{data.singerName}</h3>
           </div>
         </div>
         <div className="right">
