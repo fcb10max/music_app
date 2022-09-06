@@ -9,7 +9,7 @@ const useDataFetch = (url) => {
     setLoading(true);
     fetch(url, {
       headers: {
-        "Access-Control-Request-Origin": "https://music-app-pink.vercel.app",
+        "Access-Control-Request-Origin": `*`,
       }
     })
       .then((response) => response.json())

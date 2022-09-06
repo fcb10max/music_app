@@ -3,7 +3,6 @@ const prepareResponse = require("../modules/prepareAudioResponse");
 const getAllAudiosNames = require("../modules/getFolderContent");
 
 module.exports = (req, res) => {
-  res.append("Access-Control-Allow-Origin", "*");
   const { isRandom, singerName, songName } = req.query;
   let url = "";
   if ((isRandom === "1" || !isRandom) || (!singerName && !songName)) {

@@ -5,7 +5,7 @@ const cors = require("cors");
 const sendAllAudios = require("../controllers/sendAllAudios.js");
 const sendSingleAudio = require("../controllers/sendSingleAudio");
 
-router.use(cors({origin: "*"}));
+router.use(cors({origin: "https://music-app-pink.vercel.app"}));
 router.get("/?", sendAllAudios);
 router.get("/audio?", sendSingleAudio);
 
