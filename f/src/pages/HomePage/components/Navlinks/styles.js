@@ -54,4 +54,15 @@ export const Main = styled.div`
       }
     }
   }
+
+  @media (max-width: 1000px) {
+    .menu {
+      font-size: 12px;
+      .links {
+        a {
+          padding: 10px 16px;
+        }
+      }
+    }
+  }
 `;

@@ -10,6 +10,7 @@ export const Main = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 
   .wrapper {
     width: 95%;
@@ -34,11 +35,13 @@ export const Main = styled.div`
           font-size: 16px;
           font-weight: 600;
           color: #2e3271;
+          text-transform: capitalize;
         }
         .singer {
           font-size: 14px;
           font-weight: 400;
           color: #7c8db5b8;
+          text-transform: capitalize;
         }
       }
     }
@@ -55,6 +58,11 @@ export const Main = styled.div`
         transition: color 0.3s linear;
         cursor: pointer;
 
+        p {
+          margin: 0;
+          padding: 0;
+        }
+
         i {
           margin-right: 8px;
         }
@@ -66,6 +74,66 @@ export const Main = styled.div`
           svg > path:not(.excluded) {
             fill: #ff7e3a;
           }
+        }
+      }
+    }
+  }
+
+  @media (max-width: 1000px) {
+    width: 100%;
+    .wrapper {
+      .left {
+        flex: 2;
+
+        .image {
+          flex: 1;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          img {
+            object-fit: cover;
+          }
+        }
+
+        .name {
+          flex: 2;
+          margin-left: 10px;
+
+          .songName {
+            font-size: 14px;
+            color: #2e3271;
+          }
+
+          .singer {
+            font-size: 12px;
+            color: #7c8db5b8;
+          }
+        }
+      }
+      .right {
+        /* flex: 1; */
+
+        div {
+          margin: 5px;
+          padding: 8px 6px;
+          display: flex;
+          align-items: center;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 450px) {
+    .right {
+      flex-direction: column;
+
+      div {
+        width: 100%;
+        i {
+          width: max-content;
+        }
+        p {
+          display: none;
         }
       }
     }

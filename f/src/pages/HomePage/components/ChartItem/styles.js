@@ -3,19 +3,20 @@ import styled from "styled-components";
 export const Main = styled.div`
   width: 160px;
   height: 200px;
-  margin: 0 20px;
+  margin: 0 15px;
   padding: 0 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   border: 2px solid transparent;
   border-radius: 12px;
   background: linear-gradient(to bottom, white, white),
     linear-gradient(to bottom, red, blue);
   background-clip: padding-box, border-box;
   background-origin: padding-box, border-box;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
   cursor: pointer;
+  box-sizing: border-box;
 
   .img {
     position: relative;

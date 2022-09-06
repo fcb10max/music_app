@@ -3,39 +3,9 @@ import styled from "styled-components";
 export const Main = styled.div`
   & > .wrapper {
     max-width: 1440px;
-    width: 100vw;
+    width: 100%;
     margin: 0 auto;
     display: flex;
-  }
-
-  .sidebar {
-    width: 20%;
-    background-color: #fff;
-
-    .wrapper {
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-
-      .logo {
-        width: 100%;
-        display: flex;
-        align-items: center;
-        padding: 0 20px;
-
-        i {
-          width: 30px;
-          height: 30px;
-          margin-right: 10px;
-        }
-
-        p {
-          font-weight: 600;
-          font-size: 25px;
-          color: #2e3271;
-        }
-      }
-    }
   }
 
   .mainWindow {
@@ -43,39 +13,24 @@ export const Main = styled.div`
   }
 
   .mainWindow > .wrapper {
-    width: 90%;
+    width: 95%;
     margin: 32px auto 0;
     display: flex;
     flex-direction: column;
-  }
 
-  .mainWindow > .wrapper > .header {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 20px;
-
-    .user {
-      display: flex;
-      align-items: center;
-      cursor: pointer;
-
-      .avatar {
-        width: 20px;
-        height: 20px;
-      }
-
-      .userInfo {
-        margin-left: 10px;
-      }
+    @media (max-width: 1000px) {
+      width: 98%;
+      margin: 0 auto;
     }
   }
 
   .mainWindow > .wrapper > .charts {
+    width: 100%;
     background-color: #fff;
     border-radius: 40px;
     padding: 32px;
     overflow: hidden;
+    box-sizing: border-box;
 
     .top {
       width: 100%;
@@ -113,23 +68,33 @@ export const Main = styled.div`
     }
 
     .wrapper {
-      overflow-x: scroll;
       width: 100%;
+      position: relative;
       height: auto;
+      display: flex;
+      align-items: center;
+      grid-auto-flow: column;
+      overflow-x: scroll;
       -ms-overflow-style: none;
       scrollbar-width: none;
-      display: flex;
 
       ::-webkit-scrollbar {
         display: none;
       }
+      & > div:first-child {
+        margin: 0 20px 0 0;
+      }
+      & > div:last-child {
+        margin: 0 0 0 20px;
+      }
+
     }
   }
   .mainWindow > .wrapper > .block {
     display: flex;
     height: 500px;
     margin: 40px 0;
-    
+
     .history {
       flex: 2;
       margin-right: 20px;
@@ -160,11 +125,35 @@ export const Main = styled.div`
           cursor: pointer;
         }
       }
+      @media (max-width: 1000px) {
+        margin-right: 0;
+      }
     }
     .player {
       flex: 1;
       border-radius: 40px;
       background-color: #fff;
+    }
+
+    @media (max-width: 800px) {
+      flex-direction: column;
+      margin: 20px 0px;
+
+      .player {
+        display: none;
+      }
+    }
+  }
+
+  @media (max-width: 800px) {
+    .mainWindow {
+      width: 100%;
+    }
+  }
+
+  @media (max-width: 400px) {
+    .mainWindow > .wrapper > .block > .history > .top > .title {
+      font-size: 16px;
     }
   }
 `;
