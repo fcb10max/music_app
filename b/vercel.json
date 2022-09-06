@@ -8,8 +8,18 @@
   ],
   "routes": [
     {
+<<<<<<< HEAD
       "src": "/(.*)",
       "dest": "index.js"
     }
   ]
 }
+=======
+      // Specify which paths will route to a destination using a regex
+      "src": "/(.*)",
+      // Specify the paths' destination
+      "dest": "index.js"
+    }
+  ]
+}
+>>>>>>> 91f0d3607ef391e3481fcfae289643ddc9c99252
