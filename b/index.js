@@ -1,15 +1,10 @@
 const express = require("express");
-// const cors = require("cors");
+const cors = require("cors");
 const router = require("./src/routes");
 
 const App = express();
 
-// App.use(cors());
-App.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "https://music-app-pink.vercel.app/");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
-});
+App.use(cors({origin: "https://music-app-pink.vercel.app/"}));
 App.use(express.json());
 App.use(router);
 App.use("/assets", express.static(__dirname + "/src/public/audios"))
