@@ -10,6 +10,8 @@ export const Main = styled.div`
 
   .mainWindow {
     width: 80%;
+    position: relative;
+    /* z-index: 1; */
   }
 
   .mainWindow > .wrapper {
@@ -134,20 +136,21 @@ export const Main = styled.div`
       border-radius: 40px;
       background-color: #fff;
     }
-
-    @media (max-width: 800px) {
-      flex-direction: column;
-      margin: 20px 0px;
-
-      .player {
-        display: none;
-      }
-    }
   }
-
+  
   @media (max-width: 800px) {
     .mainWindow {
       width: 100%;
+      .wrapper {
+
+        .block {
+          flex-direction: column;
+          margin-bottom: 170px;
+          .player {
+            background-color: transparent;
+          }
+        }
+      }
     }
   }
 

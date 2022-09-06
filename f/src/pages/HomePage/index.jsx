@@ -36,20 +36,20 @@ const HomePage = () => {
     const currentScrollLeft = parentEl.scrollLeft;
 
     if (isForward) {
-      parentEl.scrollTo({
-        left: currentScrollLeft + parentOffsetWidth / 2,
+      parentEl.scrollBy({
+        left: parentOffsetWidth * 0.9,
         behavior: "smooth",
       });
     } else {
-      parentEl.scrollTo({
-        left: currentScrollLeft - parentOffsetWidth / 2,
+      parentEl.scrollBy({
+        left: -(parentOffsetWidth * 0.9),
         behavior: "smooth",
       });
     }
 
     const newLeft = isForward
-      ? currentScrollLeft + parentOffsetWidth / 2
-      : currentScrollLeft - parentOffsetWidth / 2;
+      ? currentScrollLeft + parentOffsetWidth * 0.9
+      : currentScrollLeft - parentOffsetWidth * 0.9
     const newRight = newLeft + parentOffsetWidth;
 
     toggleArrowsClasses(newLeft, newRight, parentScrollWidth);
@@ -65,15 +65,9 @@ const HomePage = () => {
       return;
     const arrowsParentEl = ref.current;
     const arrowsElChildren = Array.from(arrowsParentEl.children);
-    const itemsWrapperEl = chartItemsWrapper.current;
     arrowsElChildren.forEach((el) =>
       el.addEventListener("click", (e) => arrowClickHandler(e.target))
     );
-    itemsWrapperEl.addEventListener("scroll", (e) => {
-      const left = itemsWrapperEl.scrollLeft;
-      const right = left + itemsWrapperEl.offsetWidth;
-      toggleArrowsClasses(left, right, itemsWrapperEl.scrollWidth);
-    });
   }, [arrowClickHandler]);
 
   const toggleArrowsClasses = (left, right, maxWidth) => {
@@ -100,20 +94,21 @@ const HomePage = () => {
   };
 
   const scrollHorizontally = (e) => {
-    console.log(true);
     if (!chartItemsWrapper || !chartItemsWrapper.current) return;
     const el = chartItemsWrapper.current;
     const scrollRightEdge = el.scrollLeft + el.offsetWidth;
     if (e.deltaY > 0 && scrollRightEdge >= el.scrollWidth) return;
     e.preventDefault();
     chartItemsWrapper.current.scrollBy(e.deltaY, 0);
+    const left = el.scrollLeft;
+    const right = left + el.offsetWidth;
+    toggleArrowsClasses(left, right, el.scrollWidth);
   };
 
   useEffect(() => {
     if (!chartItemsWrapper || !chartItemsWrapper.current) return;
     const el = chartItemsWrapper.current;
     el.addEventListener("wheel", scrollHorizontally, { passive: false });
-    el.addEventListener("scroll", scrollHorizontally, { passive: false });
   }, [chartItemsWrapper]);
 
   useEffect(() => {
