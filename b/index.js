@@ -1,10 +1,8 @@
 const express = require("express");
-const cors = require("cors");
 const router = require("./src/routes");
 
 const App = express();
 
-App.use(cors({origin: "*"}));
 App.use(express.json());
 App.use(router);
 App.use("/assets", express.static(__dirname + "/src/public/audios"))
