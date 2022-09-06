@@ -140,17 +140,4 @@ export const Main = styled.div`
       }
     }
   }
-
-  @media (max-width: 800px) {
-    display: block;
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    background-color: #fff;
-    filter: drop-shadow(0 20px 40px #000);
-
-    .img {
-      display: none;
-    }
-  }
 `;

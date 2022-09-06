@@ -85,7 +85,7 @@ export const Main = styled.div`
     left: 0;
     top: 0;
     z-index: 0;
-    transition: background-color 0.3s linear;
+    transition: background-color 0.3s linear, z-index 0.1 linear;
 
     .wrapper {
       width: 200px;
@@ -101,7 +101,7 @@ export const Main = styled.div`
 
   &.active {
     background-color: #00000088;
-    z-index: 2;
+    z-index: 3;
 
     .wrapper {
       left: 0;
