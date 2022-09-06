@@ -7,7 +7,11 @@ const useDataFetch = (url) => {
 
   useEffect(() => {
     setLoading(true);
-    fetch(url)
+    fetch(url, {
+      headers: {
+        "Access-Control-Request-Origin": "https://music-app-pink.vercel.app",
+      }
+    })
       .then((response) => response.json())
       .then((obj) => {
         if (!obj.success) throw new Error(obj.message);

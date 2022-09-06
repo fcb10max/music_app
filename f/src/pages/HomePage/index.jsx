@@ -5,7 +5,7 @@ import { Scrollbars } from "react-custom-scrollbars";
 import HistoryItem from "./components/HistoryItem";
 import ChartItem from "./components/ChartItem";
 import Audio from "./components/Audio";
-import useDataFetch from "./hooks/useDataFetch";
+import useDataFetch from "../../hooks/useDataFetch";
 import Sidebar from "./components/Sidebar";
 import Header from "./components/Header";
 
