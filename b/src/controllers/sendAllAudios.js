@@ -26,7 +26,7 @@ const sendAllAudios = (req, res) => {
 
 function getTags(name) {
   return new Promise((resolve, reject) => {
-    new jsmediatags.Reader(`./src/public/audios/${name}`).read({
+    new jsmediatags.Reader(`./public/audios/${name}`).read({
       onSuccess: (tag) => {
         resolve(tag.tags);
       },
