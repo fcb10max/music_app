@@ -1,11 +1,8 @@
 import React from "react";
 import { Main } from "./styles";
 import { Link } from "react-router-dom";
-// import useLongPress from "../../hooks/useLongPress";
 
 const Navlinks = () => {
-  // const longPressHandler = ()=>console.log("long press")
-  // const longPressHook = useLongPress(longPressHandler, ()=>{}, {delay: 2000})
   return (
     <Main>
       <div className="menu">

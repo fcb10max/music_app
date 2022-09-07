@@ -13,8 +13,8 @@ const HomePage = () => {
   const serverURL = process.env.REACT_APP_SERVER_URL;
   const ref = useRef();
   const chartItemsWrapper = useRef();
-  const audios = useDataFetch(`${serverURL}/?limit=20`);
-  const initialAudio = useDataFetch(`${serverURL}/audio?isRandom=1`);
+  const audios = useDataFetch(`${serverURL}/getAudios?limit=20`);
+  const initialAudio = useDataFetch(`${serverURL}/getSingleAudio?isRandom=1`);
   const [currentAudio, setCurrentAudio] = useState();
   const [isCurrentAudioEnded, setIsCurrentAudioEnded] = useState(false);
   const [currentAudioIndex, setCurrentAudioIndex] = useState(0);
@@ -100,7 +100,6 @@ const HomePage = () => {
   };
 
   const scrollHorizontally = (e) => {
-    console.log(true);
     if (!chartItemsWrapper || !chartItemsWrapper.current) return;
     const el = chartItemsWrapper.current;
     const scrollRightEdge = el.scrollLeft + el.offsetWidth;
