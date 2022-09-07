@@ -13,7 +13,7 @@ module.exports = (req, res) => {
   }
   if (!url) return res.status(404).json({success: false, message: "item not found"});
   let response = {};
-  jsmediatags.read(`./public/audios/${url}`, {
+  jsmediatags.read(`./src/public/audios/${url}`, {
     onSuccess: (tag) => {
       const obj = prepareResponse(tag.tags);
       response = { success: true, data: obj };

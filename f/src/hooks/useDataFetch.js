@@ -7,11 +7,7 @@ const useDataFetch = (url) => {
 
   useEffect(() => {
     setLoading(true);
-    fetch(url, {
-      headers: {
-        "Access-Control-Request-Origin": `*`,
-      }
-    })
+    fetch(url)
       .then((response) => response.json())
       .then((obj) => {
         if (!obj.success) throw new Error(obj.message);
