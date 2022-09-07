@@ -101,7 +101,6 @@ const HomePage = () => {
   };
 
   const scrollHorizontally = (e) => {
-    console.log(true);
     if (!chartItemsWrapper || !chartItemsWrapper.current) return;
     const el = chartItemsWrapper.current;
     const scrollRightEdge = el.scrollLeft + el.offsetWidth;
