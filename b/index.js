@@ -10,8 +10,8 @@ App.use(express.json());
 App.use("/assets", express.static(__dirname + "/src/public/audios"))
 
 
-App.get("/?", sendAllAudios());
-App.get("/audio?", sendSingleAudio());
+App.get("/?", sendAllAudios);
+App.get("/audio?", sendSingleAudio);
 
 App.listen(5000, function (err) {
   if (err) console.log(err);

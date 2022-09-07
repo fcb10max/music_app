@@ -2,7 +2,7 @@ const jsmediatags = require("jsmediatags");
 const prepareResponse = require("../modules/prepareAudioResponse");
 const getAllAudiosNames = require("../modules/getFolderContent");
 
-module.exports = (req, res) => {
+const sendSingleAudio = (req, res) => {
   const { isRandom, singerName, songName } = req.query;
   let url = "";
   if ((isRandom === "1" || !isRandom) || (!singerName && !songName)) {
@@ -25,3 +25,6 @@ module.exports = (req, res) => {
     },
   });
 };
+
+
+module.exports = sendSingleAudio
