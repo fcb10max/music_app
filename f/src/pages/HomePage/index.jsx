@@ -21,7 +21,6 @@ const HomePage = () => {
   const [isSwitchedBack, setIsSwitchedBack] = useState(false);
   const [isMobileMenuActive, setIsMobileMenuActive] = useState(false);
 
-
   const arrowClickHandler = useCallback((el) => {
     if (
       !ref ||
