@@ -4,7 +4,7 @@ const router = require("./src/routes");
 const App = express();
 
 App.use(express.json());
-App.use(router);
+App.use("/", router);
 App.use("/assets", express.static(__dirname + "/src/public/audios"))
 
 App.listen(5000, function (err) {
