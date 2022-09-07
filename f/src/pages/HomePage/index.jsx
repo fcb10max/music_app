@@ -14,7 +14,7 @@ const HomePage = () => {
   const ref = useRef();
   const chartItemsWrapper = useRef();
   const audios = useDataFetch(`${serverURL}/?limit=20`);
-  const initialAudio = useDataFetch(`${serverURL}/audios?isRandom=1`);
+  const initialAudio = useDataFetch(`${serverURL}/audio?isRandom=1`);
   const [currentAudio, setCurrentAudio] = useState();
   const [isCurrentAudioEnded, setIsCurrentAudioEnded] = useState(false);
   const [currentAudioIndex, setCurrentAudioIndex] = useState(0);
