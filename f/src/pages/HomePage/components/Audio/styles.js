@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const Main = styled.div`
   width: 100%;
+  height: 100%;
 
   audio {
     display: none;
@@ -138,6 +139,14 @@ export const Main = styled.div`
           }
         }
       }
+    }
+  }
+
+  @media (max-width: 800px) {
+    width: 100%;
+    
+    .img {
+      display: none;
     }
   }
 `;

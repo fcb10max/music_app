@@ -1,8 +1,17 @@
 import React from "react";
 
-const Loading = ({svgWidth=false, svgHeight=false}) => {
+const Loading = ({ svgWidth = false, svgHeight = false, customStyles={} }) => {
+  const styles = {
+    height: "100%",
+    width: "100%",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    ...customStyles
+  };
+
   return (
-    <div className="loading" >
+    <div className="loading" style={styles}>
       <svg
         width={svgWidth ? svgWidth : "135"}
         height={svgHeight ? svgHeight : "140"}

@@ -87,7 +87,6 @@ export const Main = styled.div`
       & > div:last-child {
         margin: 0 0 0 20px;
       }
-
     }
   }
   .mainWindow > .wrapper > .block {
@@ -131,16 +130,22 @@ export const Main = styled.div`
     }
     .player {
       flex: 1;
+      width: 100%;
       border-radius: 40px;
       background-color: #fff;
     }
 
     @media (max-width: 800px) {
       flex-direction: column;
-      margin: 20px 0px;
+      margin: 20px 0px 200px;
 
       .player {
-        display: none;
+        width: 100%;
+        height: 180px;
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 100%;
       }
     }
   }
