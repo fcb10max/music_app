@@ -108,7 +108,6 @@ const Audio = ({ data, images, setIsCurrentAudioEnded, setIsSwitchedBack }) => {
   useEffect(() => {
     if (!ref || !progressBar || !ref.current || !progressBar.current) return;
     setProgressValue(0);
-    setIsPaused(true);
     updateTime(0);
     if (data && data.image && !data.image.length) return setCoverImage("");
     const image = new Buffer.from(data.image).toString("base64");
@@ -152,8 +151,9 @@ const Audio = ({ data, images, setIsCurrentAudioEnded, setIsSwitchedBack }) => {
         onPause={() => setIsPaused(true)}
         onPlay={() => setIsPaused(false)}
         onEnded={() => setIsCurrentAudioEnded(true)}
-        onCanPlay={() => setCanPlayAudio(true)}
+        onCanPlay={() => {setCanPlayAudio(true)}}
         onLoadStart={() => setCanPlayAudio(false)}
+        autoPlay
       >
         Your browser does not support audio API
       </audio>
@@ -238,7 +238,7 @@ const Audio = ({ data, images, setIsCurrentAudioEnded, setIsSwitchedBack }) => {
           </div>
         </div>
       ) : (
-          <Loading svgHeight={"100%"} svgWidth={"50%"} />
+        <Loading svgHeight={"100%"} svgWidth={"50%"} />
       )}
     </Main>
   );
