@@ -78,6 +78,10 @@ export const Main = styled.div`
       -ms-overflow-style: none;
       scrollbar-width: none;
 
+      & > img {
+        margin: 0 auto;
+      }
+
       ::-webkit-scrollbar {
         display: none;
       }
@@ -99,6 +103,19 @@ export const Main = styled.div`
       margin-right: 20px;
       border-radius: 40px;
       background-color: #fff;
+
+      .main {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: 100%;
+
+        img {
+          justify-self: center;
+          align-self: center;
+        }
+      }
+
       .top {
         width: 100%;
         display: flex;
@@ -125,7 +142,7 @@ export const Main = styled.div`
         }
       }
       @media (max-width: 1000px) {
-        margin-right: 0;
+        margin-right: 10px;
       }
     }
     .player {
@@ -146,6 +163,7 @@ export const Main = styled.div`
         left: 0;
         bottom: 0;
         width: 100%;
+        border-radius: 0;
       }
     }
   }

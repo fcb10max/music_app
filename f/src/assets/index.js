@@ -24,6 +24,7 @@ import profile from "./svg/Profile.svg";
 import search from "./svg/Search.svg";
 import setting from "./svg/Setting.svg";
 import pause from "./svg/Pause.svg";
+import threeDotsLoading from "./svg/threeDots.svg";
 
 const images = {
   pngs: {
@@ -50,7 +51,8 @@ const images = {
     profile,
     search,
     setting,
-    pause
+    pause,
+    threeDotsLoading
   },
 };
 

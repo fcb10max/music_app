@@ -166,6 +166,7 @@ const HomePage = () => {
                 </div>
               </div>
               <div className="wrapper" ref={chartItemsWrapper}>
+                {audios.loading && !audios.error && <img src={images.svgs.threeDotsLoading} alt={"Loading"} />}
                 {!audios.loading &&
                   !audios.error &&
                   audios.data &&
@@ -206,8 +207,18 @@ const HomePage = () => {
                         }}
                       />
                     )}
+                    renderThumbHorizontal={({ style, ...props }) => (
+                      <div
+                        {...props}
+                        style={{
+                          ...style,
+                          display: "none"
+                        }}
+                      />
+                    )}
                   >
                     <div className="main">
+                      {audios.loading && !audios.error && <img src={images.svgs.threeDotsLoading} style={{margin: "auto"}} alt={"Loading"} />}
                       {!audios.loading &&
                         !audios.error &&
                         audios.data &&

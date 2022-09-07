@@ -57,6 +57,8 @@ export const Main = styled.div`
         border-radius: 14px;
         transition: color 0.3s linear;
         cursor: pointer;
+        display: flex;
+        align-items: center;
 
         p {
           margin: 0;
