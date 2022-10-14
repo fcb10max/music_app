@@ -101,6 +101,7 @@ const HomePage = () => {
     if (e.deltaY > 0 && scrollRightEdge >= el.scrollWidth) return;
     e.preventDefault();
     chartItemsWrapper.current.scrollBy(e.deltaY, 0);
+    toggleArrowsClasses(el.scrollLeft+e.deltaY, scrollRightEdge, el.scrollWidth)
   };
 
   useEffect(() => {
