@@ -166,6 +166,9 @@ export const Main = styled.div`
   }
 
   @media (max-width: 800px) {
+    .arrowKeys {
+      display: none;
+    }
     .mainWindow {
       width: 100%;
     }
