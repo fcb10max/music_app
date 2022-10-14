@@ -186,6 +186,9 @@ const HomePage = () => {
                       borderBottomRightRadius: 40,
                       borderBottomLeftRadius: 40,
                     }}
+                    autoHide
+                    autoHideDuration={500}
+                    autoHideTimeout={1500}
                     renderThumbVertical={({ style, ...props }) => (
                       <div
                         {...props}
