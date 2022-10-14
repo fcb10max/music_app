@@ -10,6 +10,10 @@ export const Main = styled.div`
 
   .mainWindow {
     width: 80%;
+
+    @media (max-width: 800px) {
+      width: 100%;
+    }
   }
 
   .mainWindow > .wrapper {
@@ -57,6 +61,9 @@ export const Main = styled.div`
         :hover {
           transform: scale(1.5);
         }
+      }
+      @media (max-width: 800px) {
+        display: none;
       }
     }
 
@@ -128,6 +135,10 @@ export const Main = styled.div`
           font-size: 20px;
           font-weight: 700;
           color: #2e3271;
+
+          @media (max-width: 400px) {
+            font-size: 16px;
+          }
         }
         button {
           background-color: transparent;
@@ -162,21 +173,6 @@ export const Main = styled.div`
         width: 100%;
         border-radius: 0;
       }
-    }
-  }
-
-  @media (max-width: 800px) {
-    .arrowKeys {
-      display: none;
-    }
-    .mainWindow {
-      width: 100%;
-    }
-  }
-
-  @media (max-width: 400px) {
-    .mainWindow > .wrapper > .block > .history > .top > .title {
-      font-size: 16px;
     }
   }
 `;

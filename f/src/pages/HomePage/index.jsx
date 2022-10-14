@@ -36,8 +36,6 @@ const HomePage = () => {
     const parentOffsetWidth = parentEl.offsetWidth;
     const currentScrollLeft = parentEl.scrollLeft;
 
-    console.log(currentScrollLeft + (parentOffsetWidth/2));
-
     if (isForward) {
       parentEl.scrollBy({
         left: (parentOffsetWidth/2),

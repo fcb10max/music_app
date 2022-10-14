@@ -113,12 +113,13 @@ export const Main = styled.div`
         }
       }
       .right {
-        /* flex: 1; */
+        display: flex;
 
         div {
           margin: 5px;
           padding: 8px 6px;
           display: flex;
+          justify-content: center;
           align-items: center;
         }
       }
@@ -127,10 +128,11 @@ export const Main = styled.div`
 
   @media (max-width: 450px) {
     .right {
-      flex-direction: column;
-
       div {
         width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         i {
           width: max-content;
         }
