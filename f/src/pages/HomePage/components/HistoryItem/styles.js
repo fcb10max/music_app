@@ -5,7 +5,7 @@ export const Main = styled.div`
   height: 115px;
   margin: 0 auto;
   box-shadow: 0px 25px 40px rgba(0, 0, 0, 0.03);
-  margin: 40px auto;
+  margin: 10px auto;
   border-radius: 24px;
   display: flex;
   justify-content: center;

@@ -118,9 +118,6 @@ export const Main = styled.div`
 
       .top {
         width: 100%;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
         box-shadow: 0px 25px 25px 2px rgba(0, 0, 0, 0.02);
         border-top-left-radius: 40px;
         border-top-right-radius: 40px;

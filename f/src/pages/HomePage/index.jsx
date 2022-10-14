@@ -36,14 +36,16 @@ const HomePage = () => {
     const parentOffsetWidth = parentEl.offsetWidth;
     const currentScrollLeft = parentEl.scrollLeft;
 
+    console.log(currentScrollLeft + (parentOffsetWidth/2));
+
     if (isForward) {
-      parentEl.scrollTo({
-        left: currentScrollLeft + parentOffsetWidth / 2,
+      parentEl.scrollBy({
+        left: (parentOffsetWidth/2),
         behavior: "smooth",
       });
     } else {
-      parentEl.scrollTo({
-        left: currentScrollLeft - parentOffsetWidth / 2,
+      parentEl.scrollBy({
+        left: -(parentOffsetWidth/2),
         behavior: "smooth",
       });
     }
@@ -59,23 +61,15 @@ const HomePage = () => {
   useEffect(() => {
     if (
       !ref ||
-      !ref.current ||
-      !chartItemsWrapper ||
-      !chartItemsWrapper.current
+      !ref.current
     )
       return;
     const arrowsParentEl = ref.current;
     const arrowsElChildren = Array.from(arrowsParentEl.children);
-    const itemsWrapperEl = chartItemsWrapper.current;
     arrowsElChildren.forEach((el) =>
       el.addEventListener("click", (e) => arrowClickHandler(e.target))
     );
-    itemsWrapperEl.addEventListener("scroll", (e) => {
-      const left = itemsWrapperEl.scrollLeft;
-      const right = left + itemsWrapperEl.offsetWidth;
-      toggleArrowsClasses(left, right, itemsWrapperEl.scrollWidth);
-    });
-  }, [arrowClickHandler]);
+  }, []);
 
   const toggleArrowsClasses = (left, right, maxWidth) => {
     if (!ref || !ref.current) return;
@@ -113,7 +107,6 @@ const HomePage = () => {
     if (!chartItemsWrapper || !chartItemsWrapper.current) return;
     const el = chartItemsWrapper.current;
     el.addEventListener("wheel", scrollHorizontally, { passive: false });
-    el.addEventListener("scroll", scrollHorizontally, { passive: false });
   }, [chartItemsWrapper]);
 
   useEffect(() => {
@@ -184,7 +177,6 @@ const HomePage = () => {
               <div className="history">
                 <div className="top">
                   <h1 className="title">Listening History</h1>
-                  <button>See All</button>
                 </div>
 
                 <div className="wrapper">
